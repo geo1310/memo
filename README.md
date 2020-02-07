@@ -1,6 +1,8 @@
 
+# README.MD
 
-# WINDOWS POWERSHELL :
+
+# WINDOWS POWERSHELL : 
 
 PowerShell ISE -> éditeur de script intégré ( alternative à PowerGUI )
 
@@ -50,17 +52,21 @@ Add-AppxPackage .\app_name.appx
 
 ### Additions invitees
 
-    Open your terminal.
+ Open your terminal
+ 
     sudo apt-get install build-essential gcc make perl dkms
-    reboot
-    Open your terminal
-    Go to the installation disk
+ reboot  
+ Open your terminal  
+ Go to the installation disk
+ 
     sudo sh VBoxLinuxAdditions.run
-    reboot
+    
+ reboot
 
 
 # LINUX :
 
+    
 ### SSH SERVER :
 
     sudo apt-get install openssh-server
@@ -140,104 +146,106 @@ php:
 
     sudo apt-get install php-common libapache2-mod-php php-cli
     
-Pour tester l’installation, dans le répertoire /var/www/html, créez le fichier info.php 
-
-avec le contenu suivant
-
-<?php phpinfo(); ?>, redemarrer apache et verifier  http://IP_du_serveur/info.php  
+Pour tester l’installation, dans le répertoire /var/www/html, créez le fichier info.php, 
+avec le contenu suivant:  \<?php phpinfo();  ?>  
+Redemarrer apache et verifier  <http://IP_du_serveur/info.php> 
 
 mysql :
 
     sudo apt-get install mysql-server
     sudo /etc/init.d/mysql start
 
-# personnaliser la sécurisation
-sudo mysql_secure_installation utility
-# changement de mot de passe root
-sudo mysql -u root -p
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'le_mot_de_pass_choisi';
+personnaliser la sécurisation
 
-PHPMYADMIN :
+    sudo mysql_secure_installation utility
 
-sudo apt-get install phpmyadmin
+changement de mot de passe root
+
+    sudo mysql -u root -p
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'le_mot_de_pass_choisi';
+
+### PHPMYADMIN :
+
+    sudo apt-get install phpmyadmin
 
 Afin d’accéder à l’interface de gestion de phpMyAdmin, vous devrez finaliser la configuration
-de votre serveur Apache. Pour cela, éditez le fichier /etc/apache2/apache2.conf
+de votre serveur Apache.  
+
+Pour cela, éditez le fichier /etc/apache2/apache2.conf
 Ajouter à la fin :
-# Include phpMyAdmin
-Include /etc/phpmyadmin/apache.conf
-sudo service apache2 restart
 
-# erreur count dans phpmyadmin
+\# Include phpMyAdmin  
+Include /etc/phpmyadmin/apache.conf  
 
- sudo vim /usr/share/phpmyadmin/libraries/sql.lib.php
- # erreur de parentheses '(count($analyzed_sql_results['select_expr']) == 1)'
-sudo service apache2 restart
+    sudo service apache2 restart
+
+Erreur count dans phpmyadmin
+
+    sudo vim /usr/share/phpmyadmin/libraries/sql.lib.php
+    
+*erreur de parentheses (count($analyzed_sql_results['select_expr']) == 1)*
+
+    sudo service apache2 restart
+    
 
 
+# PYTHON :
 
 
-
-
-PYTHON :
---------
-
-PyPI (de l'anglais « Python Package Index ») est le dépôt tiers officiel du langage de programmation Python.
-Son objectif est de doter la communauté des développeurs Python d'un catalogue complet recensant tous
+PyPI (de l'anglais « Python Package Index ») est le dépôt tiers officiel du langage de programmation Python.  
+Son objectif est de doter la communauté des développeurs Python d'un catalogue complet recensant tous  
 les paquets Python libres1. Il est analogue au dépôt CPAN pour Perl
 
-* pip:
+#### pip:
 
 A partir des versions 2.7.9 et et 3.4, pip est fournit automatiquement avec Python.
 
-sudo apt install python3-pip
+    sudo apt install python3-pip
 
-pip install --user bottle
-pip uninstall bottle
-pip install bottle==0.9 # installer une version
-pip install bottle --upgrade # mise a jour
-pip install bottle==0.9 --upgrade # downgrade
+    pip install --user bottle
+    pip uninstall bottle
+    pip install bottle==0.9 # installer une version
+    pip install bottle --upgrade # mise a jour
+    pip install bottle==0.9 --upgrade # downgrade
 
-pip freeze > requirements.txt # liste toutes les librairies installées et leurs versions.
-On peut ensuite les réinstaller sur une autre machine facilement:
-
-pip install -r requirements.txt
-
-pip bundle nom_du_projet.pybundle -r requirements.txt # création d un bundle
-pip install nom_du_projet.pybundle
-
-pip install git+git://github.com/sametmax/0bin.git # pourvu que le code source vienne avec un fichier setup.py
+    pip freeze > requirements.txt # liste toutes les librairies installées et leurs versions.
+    pip install -r requirements.txt # On peut ensuite les réinstaller sur une autre machine facilement
 
 
+    pip bundle nom_du_projet.pybundle -r requirements.txt # création d un bundle
+    pip install nom_du_projet.pybundle
+
+    pip install git+git://github.com/sametmax/0bin.git # pourvu que le code source vienne avec un fichier setup.py
 
 
-* Python mysqlclient :
+#### Python mysqlclient :
 
-sudo apt-get install libssl-dev # Unable to install mysqlclient using pip (Ubuntu 18.04 LTS)
+    sudo apt-get install libssl-dev # Unable to install mysqlclient using pip (Ubuntu 18.04 LTS)
             ou
-apt-get install default-libmysqlclient-
+    apt-get install default-libmysqlclient-
             et
-pip install mysqlclient
+    pip install mysqlclient
 
-lsb_release _a # afficher version linux
 
-Environnement Virtuel :
+ 
+
+#### Environnement Virtuel :
 
 pip install --user virtualenv
 
-DJANGO :
---------
+## DJANGO :
 
-sudo pip3 install django-debug-toolbar
-sudo pip3 install dj-database-url
+    sudo pip install django-debug-toolbar
+    sudo pip install dj-database-url
+    sudo pip install whitenoise
 
-sudo apt install liapache2-mod-wgsi
-http://packages.debian.org/wheezy/libapache2-mod-wsgi
+    sudo apt install liapache2-mod-wgsi
+    
+<http://packages.debian.org/wheezy/libapache2-mod-wsgi>
 
-TEST DE DEPLOIEMENT :
----------------------
-django-admin startproject idreammicro # dans le dossier django_apps
-django-admin startapp helloword
+
+    django-admin startproject NameProject
+    django-admin startapp NameApp
 
 
 
