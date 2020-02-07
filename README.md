@@ -2,7 +2,8 @@
 # README.MD
 
 
-# WINDOWS POWERSHELL : 
+WINDOWS POWERSHELL : 
+---------------------------------------------------------------------------------------------------------
 
 PowerShell ISE -> éditeur de script intégré ( alternative à PowerGUI )
 
@@ -30,7 +31,8 @@ Add-AppxPackage .\app_name.appx
 
 
 
-# GIT :
+GIT :
+-------------------------------------------------------------------------------------------------------
 
     git config --global user.name "name"
     git config --global user.email "email"
@@ -48,7 +50,8 @@ Add-AppxPackage .\app_name.appx
 
 
 
-# VIRTUAL BOX :
+VIRTUAL BOX :
+-----------------------------------------------------------------------------------------------------
 
 ### Additions invitees
 
@@ -64,10 +67,10 @@ Add-AppxPackage .\app_name.appx
  reboot
 
 
-# LINUX :
-
+LINUX :
+----------------------------------------------------------------------------------------------------
     
-### SSH SERVER :
+#### SSH SERVER :
 
     sudo apt-get install openssh-server
     sudo /etc/init.d/ssh start, stop, status, reload
@@ -76,26 +79,26 @@ Add-AppxPackage .\app_name.appx
 
     ssh login@ip # ouvrir une connection
 
-### CONFIG RESEAU :
+#### CONFIG RESEAU :
 
     hostname
     hostname -I
     ifconfig
 
-### Liste des Ports ouverts :
+#### Liste des Ports ouverts :
 
     netstat -tlnpu # t=tcp, u=udp, p=programs/PID, l=listening, n=numeric  
     ps auxw | grep runserver # liste des serveurs
     kill -9 process
 
-### ENVIRONNEMENT VIRTUEL :
+#### ENVIRONNEMENT VIRTUEL :
 
     sudo pip3 install virtualenv
     virtualenv --version
     virtualenv --python=python3 envname
     source . envname/bin/activate
 
-### PAQUETS :
+#### PAQUETS :
 
 dpkg (pour Debian package) est l'outil de bas niveau gérant les paquets
 des distributions basées sur Debian
@@ -133,7 +136,7 @@ Utilisateurs :
 
     su - mynewuser # connexion
 
-### LAMP ( Linux Apache MySql Php )
+#### LAMP ( Linux Apache MySql Php )
 
 apache2 : # Serveur Web
 
@@ -164,7 +167,7 @@ changement de mot de passe root
     sudo mysql -u root -p
     ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'le_mot_de_pass_choisi';
 
-### PHPMYADMIN :
+#### PHPMYADMIN :
 
     sudo apt-get install phpmyadmin
 
@@ -189,8 +192,8 @@ Erreur count dans phpmyadmin
     
 
 
-# PYTHON :
-
+PYTHON :
+--------------------------------------------------------------------------------------------------------
 
 PyPI (de l'anglais « Python Package Index ») est le dépôt tiers officiel du langage de programmation Python.  
 Son objectif est de doter la communauté des développeurs Python d'un catalogue complet recensant tous  
@@ -247,7 +250,9 @@ A partir des versions 2.7.9 et et 3.4, pip est fournit automatiquement avec Pyth
     django-admin startproject NameProject
     django-admin startapp NameApp
 
-# MARKDOWN :
+MARKDOWN :
+---------------------------------------------------------------------------------------------------------
+
 C'est un petit langage très simple qui permet d'écrire du HTML de façon raccourcie.  
 <https://michelf.ca/projets/php-markdown/syntaxe/>
 
