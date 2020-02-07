@@ -1,7 +1,6 @@
 
 
-WINDOWS POWERSHELL :
---------------------
+# WINDOWS POWERSHELL :
 
 PowerShell ISE -> éditeur de script intégré ( alternative à PowerGUI )
 
@@ -12,48 +11,44 @@ CMD est l’un des derniers vestiges du système d’exploitation MS-DOS
 Get-ExecutionPolicy -> connaitre le mode utilisé
 Set-ExecutionPolicy Unrestricted
 
-    Restricted : aucun script ne peut être exécuté. PowerShell est utilisable uniquement en mode interactif.
+Restricted : aucun script ne peut être exécuté. PowerShell est utilisable uniquement en mode interactif.
 
-    AllSigned : seuls les scripts signés peuvent être exécutés.
+AllSigned : seuls les scripts signés peuvent être exécutés.
 
-    RemoteSigned : les scripts téléchargés depuis Internet doivent être signés pour être exécutés.
-    Les scripts présents sur votre poste de travail ne sont pas concernés et peuvent être exécutés.
+RemoteSigned : les scripts téléchargés depuis Internet doivent être signés pour être exécutés.
+Les scripts présents sur votre poste de travail ne sont pas concernés et peuvent être exécutés.
 
-    Unrestricted : pas de restrictions. Les scripts peuvent être exécutés.
+Unrestricted : pas de restrictions. Les scripts peuvent être exécutés.
 
 C:\Windows\system32> Send-MailMessage -From "geo1310@hotmail.fr" -To "gbriche59@yahoo.fr" -Subject "votre objet" -SmtpServer "smtp.mail.yahoo.fr" -Body "Le corps du mail" -Attachments "le chemin d’accès à votre fichier"
 
-
-#
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 curl.exe -L -o ubuntu-1604.appx https://aka.ms/wsl-ubuntu-1604
 Add-AppxPackage .\app_name.appx
 
 
 
-GIT :
------
+# GIT :
 
-git config --global user.name "name"
-git config --global user.email "email"
+    git config --global user.name "name"
+    git config --global user.email "email"
 
-git clone lienFourniParGitHub
+    git clone lienFourniParGitHub
 
-# create a new repository on the command line
+### create a new repository on the command line
 
-echo "# crepes_bretonnes" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/geo1310/crepes_bretonnes.git
-git push -u origin master
-
+    echo "# crepes_bretonnes" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git remote add origin https://github.com/geo1310/crepes_bretonnes.git
+    git push -u origin master
 
 
-VIRTUAL BOX :
--------------
 
-# Additions invitees
+# VIRTUAL BOX :
+
+### Additions invitees
 
     Open your terminal.
     sudo apt-get install build-essential gcc make perl dkms
@@ -64,93 +59,97 @@ VIRTUAL BOX :
     reboot
 
 
-LINUX :
---------
+# LINUX :
 
-* SSH SERVER :
+### SSH SERVER :
 
-sudo apt-get install openssh-server
-sudo /etc/init.d/ssh start, stop, status, reload
+    sudo apt-get install openssh-server
+    sudo /etc/init.d/ssh start, stop, status, reload
 
-/etc/ssh/ssh_config # fichier de config
+    /etc/ssh/ssh_config # fichier de config
 
-ssh login@ip # ouvrir une connection
+    ssh login@ip # ouvrir une connection
 
-* CONFIG RESEAU :
+### CONFIG RESEAU :
 
-hostname
-hostname -I
-/sbin/ifconfig
+    hostname
+    hostname -I
+    ifconfig
 
-Liste des Ports ouverts :
+### Liste des Ports ouverts :
 
-netstat -tlnpu # t=tcp, u=udp, p=programs/PID, l=listening, n=numeric  
-ps auxw | grep runserver # liste des serveurs
-kill -9 process
+    netstat -tlnpu # t=tcp, u=udp, p=programs/PID, l=listening, n=numeric  
+    ps auxw | grep runserver # liste des serveurs
+    kill -9 process
 
-* ENVIRONNEMENT VIRTUEL :
+### ENVIRONNEMENT VIRTUEL :
 
-sudo pip3 install virtualenv
-virtualenv --version
+    sudo pip3 install virtualenv
+    virtualenv --version
+    virtualenv --python=python3 envname
+    source . envname/bin/activate
 
-mkdir django_apps
-cd djanjo_apps
-virtualenv envname
-. envname/bin/activate
-
-
-* PAQUETS :
+### PAQUETS :
 
 dpkg (pour Debian package) est l'outil de bas niveau gérant les paquets
 des distributions basées sur Debian
 
-sudo apt update # mise à jour de l’index de paquet du serveur
+    sudo apt update # mise à jour de l’index de paquet du serveur
 
-sudo apt autoremove paquet # desinstallation
+    sudo apt autoremove paquet # desinstallation
 
-dpkg -l # liste des paquets avec description
-dpkg --get-selections # liste des paquets sans description
+    dpkg -l # liste des paquets avec description
+    dpkg --get-selections # liste des paquets sans description
 
- /var/lib/dpkg/status # fichier liste paquets
+    /var/lib/dpkg/status # fichier liste paquets
 
-# liste des paquets installés
- dpkg --get-selections | grep -v deinstall
- dpkg --get-selections > liste-des-paquets_`hostname`_`date +%H:%M-%d-%m-%Y`
+liste des paquets installés
 
-# réinstallation
-sudo apt-get update
-sudo apt-get dist-upgrade
-dpkg –set-selections < ubuntu-files
+    dpkg --get-selections | grep -v deinstall
+    dpkg --get-selections > liste-des-paquets_`hostname`_`date +%H:%M-%d-%m-%Y`
 
-synaptic # gestionnaire de paquets avec interface graphique
+réinstallation
 
-* Utilisateurs :
+    sudo apt-get update
+    sudo apt-get dist-upgrade
+    dpkg –set-selections < ubuntu-files
 
-sudo : super-user do
-groups ou id # verification de groupes d un utilisateur
+    synaptic # gestionnaire de paquets avec interface graphique
 
-adduser mynewuser # nouvel utilisateur
-usermod -aG sudo mynewuser #ajout au groupe sudo
-adduser mynewuser sudo
+Utilisateurs :
 
-su - mynewuser # connexion
+ sudo : super-user do  
+ groups ou id # verification de groupes d un utilisateur
 
-* LAMP ( Linux Apache MySql Php )
+    adduser mynewuser # nouvel utilisateur
+    usermod -aG sudo mynewuser #ajout au groupe sudo
+    adduser mynewuser sudo
+
+    su - mynewuser # connexion
+
+### LAMP ( Linux Apache MySql Php )
 
 apache2 : # Serveur Web
-sudo apt-get install apache2 apache2-doc
-sudo service apache2 status
-sudo service apache2 start ( stop)
-sudo service apache2 restart
+
+    sudo apt-get install apache2 apache2-doc
+    sudo service apache2 status
+    sudo service apache2 start ( stop)
+    sudo service apache2 restart
 
 php:
-sudo apt-get install php-common libapache2-mod-php php-cli
-Pour tester l’installation, dans le répertoire /var/www/html, créez le fichier info.php avec le contenu suivant
-<?php phpinfo(); ?>, redemarrer apache et verifier  http://IP_du_serveur/info.php
+
+    sudo apt-get install php-common libapache2-mod-php php-cli
+    
+Pour tester l’installation, dans le répertoire /var/www/html, créez le fichier info.php 
+
+avec le contenu suivant
+
+<?php phpinfo(); ?>, redemarrer apache et verifier  http://IP_du_serveur/info.php  
 
 mysql :
-sudo apt-get install mysql-server
-sudo /etc/init.d/mysql start
+
+    sudo apt-get install mysql-server
+    sudo /etc/init.d/mysql start
 
 # personnaliser la sécurisation
 sudo mysql_secure_installation utility
