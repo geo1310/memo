@@ -15,7 +15,7 @@ function colorationSyntaxique() {
 1. Liste numérotée
    1. Numbered sub-list
       1. Numbered sub-sub-list
-2. [Link](https://www.google.com)
+2. [Google](https://www.google.com)
 
 
 Une image : ![logo de Markdown Here](http://adam-p.github.io/markdown-here/img/icon24.png)
