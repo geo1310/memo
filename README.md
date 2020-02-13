@@ -246,9 +246,25 @@ A partir des versions 2.7.9 et et 3.4, pip est fournit automatiquement avec Pyth
     
 <http://packages.debian.org/wheezy/libapache2-mod-wsgi>
 
+Création d'un projet ou d'une Application :
 
     django-admin startproject NameProject
     django-admin startapp NameApp
+    
+Pour que Django crée la table SQL associée au modèle :
+
+    python manage.py makemigrations 
+    python manage.py migrate
+    
+Django propose un interpréteur interactif Python synchronisé avec votre configuration du framework.
+
+    python manage.py shell
+    
+    >>> from blog.models import Article
+    >>> article = Article(titre="Salut", auteur="Eric", contenu="Nouveau sur le Blog")
+    >>> article.save()
+    
+    >>> article.delete()
 
 MARKDOWN :
 ---------------------------------------------------------------------------------------------------------
