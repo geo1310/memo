@@ -1,7 +1,7 @@
 Impression 3D
 -----------------------------------------------------------------------------------------------------------
 
-**Tinkercad : *modelisation sur navigataur web*** 
+**[Tinkercad](https://www.tinkercad.com/) : *modelisation sur navigataur web*** 
 
 ### Télécharger des modèles 3D :
 1. [Thingiverse](https://www.thingiverse.com/) est une plateforme de partage de fichiers, majoritairement (voir quasi exclusivement) des modèles fait pour l’impression 3D. On peut télécharger les fichiers, qui sont parfois accompagnés de documents permettant leur usage ou leur assemblage. 
@@ -9,6 +9,10 @@ Comme pour tous les projets en ligne, il est indispensable d’en vérifier la l
 2. [Opendesk](https://www.opendesk.cc/) est un des premiers sites à chercher à rendre possible la fabrication distribuée. Il partage des fichiers de mobiliers, créés par des designers, afin que chacun puisse les produire localement, à l’aide d’une fraiseuse numérique. 
 En cas d’usage commercial des fichiers, les designers et la plateforme sont rétribués.
 3. [Youmagine](https://www.youmagine.com/) et [Cult](https://cults3d.com/) proposent également des catalogues de qualité.
+4. [MyMiniFactory.com](https://www.myminifactory.com/)
+5. [Happy3d.fr](https://www.happy3d.fr/fr/)
+
+
 
 ### Trancheurs :
 1. Slic3r <http://slic3r.org/>: trancheur libre multi-plateforme. 
