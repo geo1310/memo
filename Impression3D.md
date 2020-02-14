@@ -62,7 +62,7 @@ plastique extrêmement résistant tant mécaniquement que thermiquement. Il est 
 La configuration de l’imprimante se fait directement dans le code source du logiciel
 2. [Repetier-firmware](https://www.repetier.com/documentation/repetier-firmware/) : tout comme marlin, la compilation se fait avec l’environnement de développement arduino. 
 Il est aussi nécessaire de modifier le code source pour configurer l’imprimante
-####Logiciels pour contrôleurs 32 bit:
+#### Logiciels pour contrôleurs 32 bit:
 1. [Smoothieware](http://smoothieware.org/) : pas besoin de compiler le logiciel, même si cela est possible pour les plus intéressés, la configuration se fait par un fichier texte embarqué sur une carte SD, 
 ce qui rend la configuration bien plus souple que pour Marlin et Repetier
 2. [RepRapFirmware](https://reprap.org/wiki/RepRap_Firmware) : issu du projet RepRap. La configuration se fait exclusivement via des instructions Gcode
