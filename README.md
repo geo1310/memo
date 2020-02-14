@@ -266,70 +266,14 @@ Django propose un interpréteur interactif Python synchronisé avec votre config
     
     >>> article.delete()
 
-MARKDOWN :
----------------------------------------------------------------------------------------------------------
-
-C'est un petit langage très simple qui permet d'écrire du HTML de façon raccourcie.  
-<https://michelf.ca/projets/php-markdown/syntaxe/>
-
-Emphase faible (italique)  
-Voici un mot *important* à mon sens  
-Voici un mot _important_ à mon sens
-
-Emphase forte (gras)  
-Voici des mots **très importants**, j'insiste !  
-Voici des mots __très importants__, j'insiste !
-
-# Titre de niveau 1
-## Titre de niveau 2
-### Titre de niveau 3
-#### Titre de niveau 4
-##### Titre de niveau 5
-
-* Une puce
-* Une autre puce
-    * Une sous-puce
-    * Une autre sous-puce
-* Et encore une autre puce !
-
-1. Et de un
-2. Et de deux
-3. Et de trois
-
-> Ceci est un texte cité. Vous pouvez répondre
 
 
-> Une citation
->
-> > Une réponse à la citation
-> >
-> > Réponse qui contient une liste à puces :
-> >
-> > * Puce
-> > * Autre puce
 
-Voici un code en C :
 
-    int main()
-    {
-        printf("Hello world!\n");
-        return 0;
-    }
 
-La fonction `printf()` permet d'afficher du texte
 
-Rendez-vous sur le [Site du Zéro](http://www.siteduzero.com) pour tout apprendre à partir de Zéro !  
-Rendez-vous sur le <http://www.siteduzero.com> pour tout apprendre à partir de Zéro !
 
-Les images s'insèrent de la même façon que les liens.  
-Vous devez simplement mettre un point d'exclamation devant les premiers crochets :  
 
-![Zozor](http://uploads.siteduzero.com/files/420001_421000/420263.png)
-
------
-Faire une barre de séparation en Markdown ? Rien de plus intuitif !
-
------
 
 
 
