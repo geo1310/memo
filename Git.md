@@ -1,7 +1,7 @@
 
 GIT :                                                                      
 -------------------------------------------------------------------------------------------------------
-######[README](/README.md)
+###### [README](/README.md)
 ### Installation :
 Linux : <http://git-scm.com/downloads>  
 Windows :  <http://msysgit.github.io>

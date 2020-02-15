@@ -2,7 +2,7 @@
 
 PYTHON :
 --------------------------------------------------------------------------------------------------------
-######[README](/README.md)
+###### [README](/README.md)
 PyPI (de l'anglais « Python Package Index ») est le dépôt tiers officiel du langage de programmation Python.  
 Son objectif est de doter la communauté des développeurs Python d'un catalogue complet recensant tous  
 les paquets Python libres1. Il est analogue au dépôt CPAN pour Perl
