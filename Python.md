@@ -71,6 +71,14 @@ Django propose un interpréteur interactif Python synchronisé avec votre config
     >>> article.save()
     
     >>> article.delete()
+    
+Administration :
+
+    python manage.py createsuperuser
+    
+    
+    
+    
 
 
 
