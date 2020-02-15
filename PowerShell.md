@@ -57,8 +57,9 @@ Terminez en filtrant uniquement sur les comptes actifs via la clause Where-Objec
 3. TimeSpan : indique la durée d'inactivité
 4. SearchBase : recherche uniquement dans cette unité d'organisation  
 
-  
-    # Script pour automatiser la désactivation des comptes AD dont la dernière connexion > 90 jours
+**Script pour automatiser la désactivation des comptes AD dont la dernière connexion > 90 jours :**
+
+
     # version 1.0
     # Auteur : Nicolas PRIGENT
 
@@ -94,7 +95,7 @@ Terminez en filtrant uniquement sur les comptes actifs via la clause Where-Objec
     
     C:\Windows\system32> Send-MailMessage -From "geo1310@hotmail.fr" -To "gbriche59@yahoo.fr" -Subject "votre objet" -SmtpServer "smtp.mail.yahoo.fr" -Body "Le corps du mail" -Attachments "le chemin d’accès à votre fichier"
 
-### Installation Linux 
+### Installation Linux avec PowerShell
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
     curl.exe -L -o ubuntu-1604.appx https://aka.ms/wsl-ubuntu-1604
     Add-AppxPackage .\app_name.appx
