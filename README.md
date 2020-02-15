@@ -3,7 +3,7 @@
 
 [GIT](/Git.md)
 
-[IMPRESSION 3D](/memo/Impression3d.md)
+[IMPRESSION 3D](/Impression3D.md)
 
 [LINUX](/Linux.md)
 

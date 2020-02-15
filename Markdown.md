@@ -1,7 +1,7 @@
 
 MARKDOWN
 ------------------------------------------------------------------------------------------------------------------
-
+######[README](/README.md)
 C'est un petit langage très simple qui permet d'écrire du HTML de façon raccourcie.  
 <https://michelf.ca/projets/php-markdown/syntaxe/>
 
