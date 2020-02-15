@@ -55,10 +55,9 @@ Terminez en filtrant uniquement sur les comptes actifs via la clause Where-Objec
 1. UsersOnly : recherche uniquement des objets de type "account"
 2. AccountInactive : recherche les comptes qui ne se sont pas connectés depuis une certaine période
 3. TimeSpan : indique la durée d'inactivité
-4. SearchBase : recherche uniquement dans cette unité d'organisation
-    
-    
-    
+4. SearchBase : recherche uniquement dans cette unité d'organisation  
+
+  
     # Script pour automatiser la désactivation des comptes AD dont la dernière connexion > 90 jours
     # version 1.0
     # Auteur : Nicolas PRIGENT
