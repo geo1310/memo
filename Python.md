@@ -44,9 +44,11 @@ A partir des versions 2.7.9 et et 3.4, pip est fournit automatiquement avec Pyth
 
 ## DJANGO :
 
-    sudo pip install django-debug-toolbar
-    sudo pip install dj-database-url
-    sudo pip install whitenoise
+    pip install django-debug-toolbar
+    pip install dj-database-url
+    pip install whitenoise # servir les fichiers static 
+    pip install pillow # Bibliotheque de traitement des images
+    
 
     sudo apt install liapache2-mod-wgsi
     
