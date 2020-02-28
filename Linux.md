@@ -2,6 +2,16 @@
 LINUX :
 ----------------------------------------------------------------------------------------------------
    ###### [README](/README.md) 
+
+#### CLAVIER ( azerty - qwerty ):
+
+    setxkbmap fr # ponctuel
+    setxkbmap us
+    sudo dpkg-reconfigure keyboard-configuration
+
+    sudo loadkeys fr
+    sudo loadkeys us
+
 #### SSH SERVER :
 
     sudo apt-get install openssh-server
@@ -16,6 +26,7 @@ LINUX :
     hostname
     hostname -I
     ifconfig
+    ip addr # debian 9
 
 #### Liste des Ports ouverts :
 
@@ -62,11 +73,12 @@ Utilisateurs :
  sudo : super-user do  
  groups ou id # verification de groupes d un utilisateur
 
-    adduser mynewuser # nouvel utilisateur
-    usermod -aG sudo mynewuser #ajout au groupe sudo
-    adduser mynewuser sudo
+    adduser newuser # nouvel utilisateur
+    usermod -aG sudo newuser #ajout au groupe sudo
+    adduser mnewuser sudo
 
-    su - mynewuser # connexion
+    su - newuser # connexion ( le - permet d'atterir dans le home du newuser )
+    sudo su # connexion root
 
 #### LAMP ( Linux Apache MySql Php )
 
