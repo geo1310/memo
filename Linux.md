@@ -2,7 +2,19 @@
 LINUX :
 ----------------------------------------------------------------------------------------------------
    ###### [README](/README.md) 
+   
+#### VERSION :
+    cat /proc/version # version du noyau Linux utilisé, son nom, la version du compilateur utilisé
+    uname -mr # version du noyau Linux utilisé
+   
+    # liste des noyaux installés
+    dpkg -l | awk '/^rc/{next} ; / linux-(c|g|h|i|lo|m|si|t)/{print $1,$2,$3,$4 | "sort -k3 | column -t"}'   
+---    
+#### LISTE FICHIERS :
 
+    vim ~/.vimrc # Configuration vim
+    vim /etc/apt/sources.list # liste des dépots 
+ ---
 #### CLAVIER ( azerty - qwerty ):
 
     setxkbmap fr # ponctuel
@@ -11,7 +23,7 @@ LINUX :
 
     sudo loadkeys fr
     sudo loadkeys us
-
+---
 #### SSH SERVER :
 
     sudo apt-get install openssh-server
@@ -20,27 +32,40 @@ LINUX :
     /etc/ssh/ssh_config # fichier de config
 
     ssh login@ip # ouvrir une connection
+---    
+#### CONFIG MATERIEL :
 
+    lspci # liste materiel pci
+    lsusb # liste materiel usb
+    
+    lsmod # ???
+---
 #### CONFIG RESEAU :
-
+    # identifier les cartes réseau :
+    lspci -nn | grep -i network
+    lspci -nnd ::0280 # chercher une carte wifi
+    
     hostname
     hostname -I
     ifconfig
     ip addr # debian 9
+    
+    iwconfig # sans-fil
+    sudo iwlist scan # ???
 
-#### Liste des Ports ouverts :
+##### Liste des Ports ouverts :
 
     netstat -tlnpu # t=tcp, u=udp, p=programs/PID, l=listening, n=numeric  
     ps auxw | grep runserver # liste des serveurs
     kill -9 process
-
+---    
 #### ENVIRONNEMENT VIRTUEL :
 
     sudo pip3 install virtualenv
     virtualenv --version
     virtualenv --python=python3 envname
     source . envname/bin/activate
-
+---
 #### PAQUETS :
 
 dpkg (pour Debian package) est l'outil de bas niveau gérant les paquets
@@ -79,7 +104,7 @@ Utilisateurs :
 
     su - newuser # connexion ( le - permet d'atterir dans le home du newuser )
     sudo su # connexion root
-
+---
 #### LAMP ( Linux Apache MySql Php )
 
 apache2 : # Serveur Web
