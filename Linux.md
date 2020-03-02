@@ -8,11 +8,15 @@ LINUX :
     uname -mr # version du noyau Linux utilisé
    
     # liste des noyaux installés
-    dpkg -l | awk '/^rc/{next} ; / linux-(c|g|h|i|lo|m|si|t)/{print $1,$2,$3,$4 | "sort -k3 | column -t"}'   
+    dpkg -l | awk '/^rc/{next} ; / linux-(c|g|h|i|lo|m|si|t)/{print $1,$2,$3,$4 | "sort -k3 | column -t"}'  
+    
+    # mise à jour
+    sudo apt-get update &&  apt-get upgrade && apt-get dist-upgrade
 ---    
 #### LISTE FICHIERS :
 
-    vim ~/.vimrc # Configuration vim
+    vim /usr/share/vim/vimrc # Configuration vim
+    vim ~/.vimrc # Configuration vim local
     vim /etc/apt/sources.list # liste des dépots 
  ---
 #### CLAVIER ( azerty - qwerty ):
@@ -32,6 +36,12 @@ LINUX :
     /etc/ssh/ssh_config # fichier de config
 
     ssh login@ip # ouvrir une connection
+    
+    # Reconfigurer clé SSH
+    cd /etc/ssh
+    sudo dpkg-reconfigure openssh-server # modifie la clé
+    
+    
 ---    
 #### CONFIG MATERIEL :
 
@@ -91,9 +101,27 @@ réinstallation
     sudo apt-get dist-upgrade
     dpkg –set-selections < ubuntu-files
 
-    synaptic # gestionnaire de paquets avec interface graphique
+    synaptic # gestionnaire de paquets avec interface 
 
-Utilisateurs :
+##### INSTALLER UNE ARCHIVE :
+
+1. Extraire l'archive dans mes documents
+2. Afficher les fichiers
+3. Copier le lien du dossier dans mes documents ( clic droit proprietes...)
+
+        sudo mv /home/geo1310/Documents/sublime_text_3 /opt
+        sudo ln -s /opt/sublime_text_3 usr/local/sublime_text_3
+        sudo ln -s /usr/local/sublime_text_3/sublime_text /usr/local/bin/st3
+---        
+#### COMMANDES PERSONNALISABLES :
+
+    vim ~/.bash_aliases
+
+* Exemple -> alias int='sudo nano /etc/network/interfaces'
+* Relancer la console
+    
+---
+###Utilisateurs :
 
  sudo : super-user do  
  groups ou id # verification de groupes d un utilisateur
@@ -104,6 +132,8 @@ Utilisateurs :
 
     su - newuser # connexion ( le - permet d'atterir dans le home du newuser )
     sudo su # connexion root
+    
+    sudo passwd root # changement mot de passe
 ---
 #### LAMP ( Linux Apache MySql Php )
 
