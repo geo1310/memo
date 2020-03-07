@@ -13,11 +13,60 @@ LINUX :
     # mise à jour
     sudo apt-get update &&  apt-get upgrade && apt-get dist-upgrade
 ---    
-#### LISTE FICHIERS :
+#### LISTE COMMANDES :
+        
 
-    vim /usr/share/vim/vimrc # Configuration vim
-    vim ~/.vimrc # Configuration vim local
-    vim /etc/apt/sources.list # liste des dépots 
+---    
+###FICHIERS :
+
+#####STRUCTURE :
+
+* **bin :** contient des programmes (exécutables) susceptibles d'être utilisés par tous les utilisateurs de la machine.
+* **boot :** fichiers permettant le démarrage de Linux.
+* **dev :** fichiers contenant les périphériques.Ce dossier contient des sous-dossiers qui « représentent » chacun un périphérique.  
+* **etc :** fichiers de configuration.
+* **home :** répertoires personnels des utilisateurs.A la manière du dossier Mes documents de Windows.
+* **lib :** dossier contenant les bibliothèques partagées (généralement des fichiers.so) utilisées par les programmes. C'est en fait là qu'on trouve l'équivalent des.dll de Windows.
+* **media :** lorsqu'un périphérique amovible (comme une carte mémoire SD ou une clé USB) est inséré dans votre ordinateur, Linux vous permet d'y accéder à partir d'un sous-dossier de media. On parle de montage.
+* **mnt :** c'est un peu pareil que media, mais pour un usage plus temporaire.
+* **opt :** répertoire utilisé pour les add-ons de programmes.
+* **proc :** contient des informations système.
+* **root :** c'est le dossier personnel de l'utilisateur « root ». Normalement, les dossiers personnels sont placés dans home, mais celui de « root » fait exception. En effet, comme je vous l'ai dit dans le chapitre précédent, « root » est le superutilisateur, le « chef » de la machine en quelque sorte. Il a droit à un espace spécial.
+* **sbin :** contient des programmes système importants.
+* **tmp :** dossier temporaire utilisé par les programmes pour stocker des fichiers.
+* **usr :** c'est un des plus gros dossiers, dans lequel vont s'installer la plupart des programmes demandés par l'utilisateur.
+* **var :** ce dossier contient des données « variables », souvent des logs (traces écrites de ce qui s'est passé récemment sur l'ordinateur).
+
+##### FICHIERS UTILES :
+    /usr/share/vim/vimrc # Configuration vim
+    ~/.vimrc # Configuration vim local
+    /etc/apt/sources.list # liste des dépots
+    ~/.bashrc # liste des alias  
+ 
+##### COMMANDES UTILES :
+        du # disk usage
+        ls -larthF # liste détaillée
+        ls -i # liste avec no inode
+        cat ou less # affichage de fichiers
+        head file -n 2 # affiche les 2 premieres lignes d'un fichier
+        tail file -n 2 -f -s 3 # affiche les 2 dernieres lignes d'un fichier ( -f:follow -s 3 : toutes les 3s)
+        
+        touch file # crée un fichier ou modifie sa date s'il existe
+        
+        mkdir -p x/y/z # -p crée les sous-dossiers également
+        cp file copyfile # copie de fichier
+        cp -R # copie un dossier
+        mv # deplacer ou renommer un fichier ou un dossier
+        rm -r # suppression d'un dossier
+        rm -rf /* # la commande qui tue 
+        ln # creer un lien physique ( partage le meme contenu entre plusieurs nom de fichiers )
+        ln -s # creer un lien symbolique ( raccourci entre plusieurs fichiers ou dossiers)
+        
+        
+        
+        
+        
+        
  ---
 #### CLAVIER ( azerty - qwerty ):
 
@@ -39,9 +88,7 @@ LINUX :
     
     # Reconfigurer clé SSH
     cd /etc/ssh
-    sudo dpkg-reconfigure openssh-server # modifie la clé
-    
-    
+    sudo dpkg-reconfigure openssh-server # modifie la clé 
 ---    
 #### CONFIG MATERIEL :
 
@@ -121,19 +168,21 @@ réinstallation
 * Relancer la console
     
 ---
-###Utilisateurs :
+###UTILISATEURS ET DROITS :
 
  sudo : super-user do  
  groups ou id # verification de groupes d un utilisateur
-
-    adduser newuser # nouvel utilisateur
+    
+    addgroup # cree un groupe 
+    adduser newuser # nouvel utilisateur (useradd et userdel pour autres distributions )
     usermod -aG sudo newuser #ajout au groupe sudo
     adduser mnewuser sudo
+    deluser --remove-home user # supprimer un utilisateur
 
     su - newuser # connexion ( le - permet d'atterir dans le home du newuser )
-    sudo su # connexion root
+    sudo su # connexion root ( ctrl+d ou exit pour sortir de root )
     
-    sudo passwd root # changement mot de passe
+    sudo passwd user # changement mot de passe pour user
 ---
 #### LAMP ( Linux Apache MySql Php )
 
