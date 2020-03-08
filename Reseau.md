@@ -45,6 +45,10 @@ Masque de Sous-reseau :
 * 11111110 -> 254
 * 11111111 -> 255
 
+Ecriture CIDR : 
+* 192.168.0.1/255.255.255.0 -> 192.168.0.1/24
+* 192.168.0.1/255.255.240.0 -> 192.168.0.1/20
+
 La première adresse d'une plage est l'adresse du réseau lui-même.  
 La dernière adresse d'une plage est une adresse spéciale, l'adresse de broadcast.
 
