@@ -25,6 +25,7 @@
   * Rôle : interconnecter les réseaux entre eux.
   * Rôle secondaire : fragmenter les paquets.
   * Matériel associé : le routeur.
+  * Protocole : IP, ARP
   
 La couche 3 va donc me permettre de joindre n'importe quel réseau sur Internet, en passant à travers d'autres réseaux.   
 Ma connexion à une machine sur un autre réseau se fera à travers des réseaux, de proche en proche.
@@ -34,7 +35,7 @@ tracert -> Windows
 
 L'adresse IP est l'adresse du réseau ET de la machine  
 Elle est codée sur 4 octets (soit 32 bits, soit 2^32 possibilites) en IPV4  
-Masque de Sous-reseau :  
+Masque de Sous-reseau :  (contiguïté des bits)
 * 00000000 -> 0
 * 10000000 -> 128
 * 11000000 -> 192
@@ -65,6 +66,7 @@ RFC 1918 -> Cette RFC précise des plages d'adresses, soit des réseaux, qui ont
   * Rôle : connecter les machines entre elles sur un réseau local.
   * Rôle secondaire : détecter les erreurs de transmission.
   * Matériel associé : le switch, ou commutateur.
+  * Protocole : ETHERNET, ARP
   
 L'adresse MAC est l'adresse d'une carte réseau.
 Elle est unique au monde pour chaque carte.
@@ -101,3 +103,46 @@ Boucle de Commutation ( on offre 2 chemins differents pour une trame ) --> Tempe
 **Chaque couche est indépendante , chaque couche ne peut communiquer qu'avec une couche adjacente.**  
 **Les couches réseau ( 1 à 4 ) offrent le service de communication à la couche applicative ( 7 )**
 
+---
+###COMMANDES RESEAU :
+        
+        # ------------------------------------------------
+        # Windows:
+        # ------------------------------------------------
+        tracert www. # trace la route d'une adresse
+        
+        trace route # affiche la table de routage
+        netstat -r # affiche la table de routage
+        arp -a # affiche la table arp
+        
+        # ------------------------------------------------
+        # Linux:
+        # ------------------------------------------------
+        traceroute www. # trace la route d une adresse
+        
+        arp -an # affiche la table arp
+        route -n # affiche la table de routage
+        ip route # affiche la table de routage
+        route del default # suppression route par defaut
+        route del -net 192.168.10.0 netmask 255.255.255.0 # suppression route
+        route add default gw 10.0.0.254 # ajout de route par defaut
+        route add -net 192.168.10.0 netmask 255.255.255.0 gw 192.168.11.254 # cree une route
+        
+        
+        ifconfig eth0 10.0.0.1 netmask 255.255.255.0 # modifie l adresse d une machine
+        ifconfig eth0:0 192.168.11.254 netmask 255.255.255.0 # ajout adresse , création interface virtuelle
+        
+        cat /proc/sys/net/ipv4/ip_forward # affiche la valeur ip_forward
+        sysctl net.ipv4.ip_forward # affiche la valeur ip_forward
+        
+        echo 1 > /proc/sys/net/ipv4/ip_forward # transforme la machine en routeur
+        sysctl -w net.ipv4.ip_forward=1
+        
+        /etc/sysctl.conf: # permanent setting
+        net.ipv4.ip_forward = 1
+        sudo sysctl -p
+        
+        tcpdump -i eth0 icmp # sniffer
+        
+        
+        
