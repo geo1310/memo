@@ -6,6 +6,7 @@ LINUX :
 #### VERSION :
     cat /proc/version # version du noyau Linux utilisé, son nom, la version du compilateur utilisé
     uname -mr # version du noyau Linux utilisé
+    lsb_release -a
    
     # liste des noyaux installés
     dpkg -l | awk '/^rc/{next} ; / linux-(c|g|h|i|lo|m|si|t)/{print $1,$2,$3,$4 | "sort -k3 | column -t"}'  
