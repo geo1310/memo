@@ -19,6 +19,21 @@
   * Rôle : gérer les connexions applicatives.
   * Rôle secondaire : garantir la connexion.
   * Matériel associé : RAS.
+  * Protocole : TCP , UDP
+  
+En couche 4 ladresse utilisée est le Port ( l'adresse d'une application sur une machine ).  
+Les ports sont codés en décimal sur deux octets ( 0 à 65535)   
+* web : 80
+* mail : 25
+* ssh : 22
+* imap : 143
+* proxy : 8080
+* https : 443
+* Counterstrike : 27015
+* ftp : 20/21
+* dns : 53
+
+
 ---
 * ###Couche 3
   * Nom : **réseau**
@@ -54,7 +69,7 @@ La première adresse d'une plage est l'adresse du réseau lui-même.
 La dernière adresse d'une plage est une adresse spéciale, l'adresse de broadcast.
 
 RFC 79 ( Request For Comment) -> protocole IP  
-RFC 1918 -> Cette RFC précise des plages d'adresses, soit des réseaux, qui ont une utilité particulière  
+RFC 1918 -> Cette RFC précise des plages d'adresses privees, soit des réseaux, qui ont une utilité particulière  
 * 10.0.0.0/255.0.0.0
 * 172.16.0.0/255.240.0.0
 * 192.168.0.0/255.255.0.0
@@ -77,11 +92,6 @@ Elle est codée sur 6 octets (soit 48 bits, soit 2^48 possibilites).
 
 ff:ff:ff:ff:ff:ff -> **adresse de broadcast**
 
-##### TRAME ETHERNET :
-**Adresse MAC DST --- Adresse MAC SRC --- Protocole de Couche 3 --- *Donnees* --- CRC**  
-Entete Ethernet : 18 Octets  
-Taille minimale : 64 Octets  
-Taille maximale : 1518 Octets
 
 ##### SWITCH :
 Analyse le contenu de la couche 2  
@@ -174,8 +184,14 @@ Liste Résolveurs DNS ( compatibles DNS-over-HTTPS ) :
 * UncensoredDNS 
 
 ---
+### PROTOCOLE ETHERNET :
 
+Datagramme ETHERNET : **Adresse MAC DST** - **Adresse MAC SRC** - **Protocole de Couche 3** - Donnees - **CRC**   
 
+Entete Ethernet : 18 Octets  
+Taille minimale : 64 Octets  
+Taille maximale : 1518 Octets
+---
 ### PROTOCOLE ARP :
 
 
@@ -253,3 +269,39 @@ Il permet de comprendre plus facilement ce qui se passe sur un réseau quand il 
 
 ---
 
+### PROTOCOLE TCP :
+
+Un protocole fiable mais sans nécessité de rapidité  
+Chaque paquet envoyé doit être acquitté par le receveur, qui en réémettra un autre s'il ne reçoit pas d'accusé de réception.  
+On dit alors que c'est un protocole connecté.
+
+* L'établissement de la connexion TCP se fait par l'échange de trois paquets ( SYN, **SYN**+ACK, **ACK** )     
+C'est pour cela qu'on l'appelle **Three Way Handshake**  
+* Le flag ACK sera positionné sur tous les paquets pendant la communication.  
+* Fin de communication ( FIN+**ACK**, **FIN**+ACK, **ACK**)
+
+Datagramme TCP : **Port Source** - **Port Destination** - **???** - **Flags** - **???** - **Checksum** - **???** - Données  
+L'en-tête fait 20 octets, comme celui de la couche 3.  
+* Flags :
+    * SYN : Initiates a connection
+    * ACK : Acknowledges received data
+    * FIN : Closes a connection
+    * RST : Aborts a connection in response to an error
+    * PSH
+    * URG
+
+
+---
+### PROTOCOLE UDP :
+
+Un protocole rapide sans nécessité de fiabilité
+Les paquets sont envoyés dès que possible, mais on se fiche de savoir s'ils ont été reçus ou pas.   
+On dit qu'UDP est un protocole non-connecté.  
+
+Datagramme UDP :  **Port Source** - **Port Destination** - **Longueur Totale** - **Checksum** - Données  
+Entete de 4 informations de 2 octects
+
+Utilisation : telephone (VoIP ou ToIP), radio, streaming...**et aussi DNS et SNMP**
+
+
+---
