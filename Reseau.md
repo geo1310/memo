@@ -1,5 +1,7 @@
 ###MODELE OSI :
 
+
+![dhcp1](./images/osi.png)  
 ---
 
 * ###Couche 7
@@ -301,7 +303,138 @@ On dit qu'UDP est un protocole non-connecté.
 Datagramme UDP :  **Port Source** - **Port Destination** - **Longueur Totale** - **Checksum** - Données  
 Entete de 4 informations de 2 octects
 
-Utilisation : telephone (VoIP ou ToIP), radio, streaming...**et aussi DNS et SNMP**
+Utilisation : telephone (VoIP ou ToIP), radio, streaming...**et aussi DNS et SNMP*
+
+---
+
+### SERVICE DHCP ( Dynamic Host Configuration Protocol) :
+
+Un protocole pour distribuer des adresses IP  
+La trame permettant de trouver un serveur DHCP est une trame **DHCPDISCOVER** ( Broadcast)  
+Une fois que notre serveur DHCP reçoit le **DHCPDISCOVER**, il va renvoyer une proposition, c'est un **DHCPOFFER**.  
+Il va proposer une adresse IP, un masque ainsi qu'une passerelle par défaut et parfois un serveur DNS  
+Le client (votre machine) répond par un **DHCPREQUEST**. Celui-ci est aussi envoyé en broadcast et sert à prévenir quelle offre est acceptée.   
+Le serveur DHCP dont l'offre a été acceptée valide la demande et envoie un **DHCPACK** qui valide l'allocation du bail.  
+
+![dhcp1](./images/dhcp1.png)  
+
+##### INSTALLATION D UN SERVEUR DHCP :
+
+    apt-get install isc-dhcp-server
+
+Ce serveur est géré par deux fichiers de configuration :
+* /etc/default/isc-dhcp-server 
+    * Vous pouvez faire écouter votre serveur sur plusieurs interfaces, il suffit juste de les séparer par un espace : INTERFACES="eth0 eth1 eth3"
+* /etc/dhcp/dhcpd.conf
+
+        netstat -anup |grep dhcp # vérifie que le serveur DHCP est bien en écoute
+        udp        0      0 0.0.0.0:67              0.0.0.0:*                           956/dhcpd
+        
+        dhclient eth0 # forcer une demande DHCP
+---        
+### SERVICE DNS ( Domain Name System ):
+
+Un nom de domaine se décompose en plusieurs parties :  
+
+![domaine1](./images/domaine1.png)  
+
+Top Level Domain :
+* TLD nationaux :   fr, it, de, es, ...
+* TLD génériques :  com, org, net, biz, ...
+
+Chaque "partie" est appelée label et l'ensemble des labels constitue un **FQDN : Fully Qualified Domain Name**.  
+Ce FQDN est unique. Par convention, un FQDN se finit par un point, car au-dessus des TLD il y a la racine du DNS, tout en haut de l'arbre.   
+Ce point disparaît lorsque vous utilisez les noms de domaine avec votre navigateur, mais vous verrez qu'il deviendra très important lorsque nous configurerons notre propre serveur DNS.
+
+www.google.fr -> Ici, www est le nom d'une machine dans le domaine google.fr  
+Au niveau DNS, www.google.fr n'est pas un FQDN, car il manque le point à la fin.  
+
+#### INSTALLATION D UN SERVEUR DNS  ( avec le serveur de noms : BIND ):
+
+    sudo apt install bind9
+    
+Fichiers de configuration :
+* /etc/bind/named.conf :   Nous devons tout d'abord déclarer à notre serveur quels seront les noms de domaine qu'il va devoir gérer, on appelle ça des zones  
+
+        zone "reseau.fr" {
+                        type master;
+                        file "/etc/bind/db.reseau.fr";
+                        allow-transfer { 192.168.0.2; };
+                };
+                
+* /etc/bind/db.nomZone :  Ensuite, nous devrons configurer chacune de ces zones.  
+        
+        cp /etc/bind/db.local /etc/bind/db.reseau.fr # Afin d'avoir une configuration "basique", vous pouvez faire une copie de /etc/bind/db.local
+        vim /etc/bind/db.reseau.fr
+
+Dans ce fichier de zone, nous allons indiquer des enregistrements. Il en existe de plusieurs types :
+
+* A : c'est le type le plus courant, il fait correspondre un nom d'hôte à une adresse IPv4 ;
+* AAAA : fait correspondre un nom d'hôte à une adresse IPv6 ;
+* CNAME : permet de créer un alias pointant sur un autre nom d'hôte ;
+* NS : définit le ou les serveurs DNS du domaine ;
+* MX : définit le ou les serveurs de mail du domaine ;
+* PTR : fait correspond une IP à un nom d'hôte. Il n'est utilisé que dans le cas d'une zone inverse, que nous verrons plus loin ;
+* SOA : donne les infos de la zone, comme le serveur DNS principal, l'adresse mail de l'administrateur de la zone, le numéro de série de la zone et des durées que nous détaillerons.
+
+        $TTL 604800     ; 1 semaine # durée pendant laquelle les informations sont conservées en cache coté client
+        $ORIGIN reseau.fr. ; valeur de @
+        @       IN SOA  ns1.reseau.fr. admin.reseau.fr. ( ; SOA : Start of Authority 
+                                        2013020905 ;serial
+                                        3600       ; refresh (1 hour)
+                                        3000       ; retry (50 minutes)
+                                        4619200    ; expire (7 weeks 4 days 11 hours 6 minutes 40 seconds)
+                                        604800     ; minimum (1 week)
+                                        )
+
+        @               IN      NS      ns1.reseau.fr.
+        @               IN      NS      ns2
+        @               IN      MX      10 mx1
+        @               IN      MX      20 mx2
+        ns1             IN      A       192.168.0.1
+        ns2             IN      A       192.168.0.2
+        mx1             IN      A       192.168.0.3
+        mx2             IN      A       192.168.0.4
+        tuto            IN      A       192.168.0.5
+        www             IN      A       192.168.0.6
+        blog            IN      CNAME   www
+
+---
+Première chose, quand vous possédez un domaine, vous devez avoir deux serveurs DNS, un serveur primaire et un serveur secondaire.  
+Ceci est nécessaire pour pouvoir garantir que si l'un tombe en panne, le second permettra toujours d'accéder à vos serveurs.  
+
+Le domaine que nous allons configurer sera : **reseau.fr**.
+
+Ce nom de domaine sera géré par deux serveurs dns :
+* ns1.reseau.fr - 192.168.0.1 sera notre serveur maître
+* ns2.reseau.fr - 192.168.0.2 sera notre serveur esclave
+
+Les adresses email de ce nom de domaine seront gérées par deux serveurs de messagerie :
+
+* mx1.reseau.fr - 192.168.0.3
+* mx2.reseau.fr - 192.168.0.4
+
+Ce nom de domaine possédera deux machines :
+* **tuto.reseau.fr** - 192.168.0.5
+* **www.reseau.fr** - 192.168.0.6.
+
+Il existera aussi une autre machine, **blog.reseau.fr**, qui sera un alias de **www.reseau.fr**  
+( Un alias est une association entre un nom de machine et un autre nom de machine.)
+
+Pour chaque domaine, il doit y avoir un serveur de messagerie qui permet de recevoir des mails pour les adresses de notre domaine.  
+
 
 
 ---
+
+
+
+
+
+
+
+###GNS3 ( linux ) :
+
+    sudo add-apt-repository ppa:gns3/ppa
+    sudo apt update                                
+    sudo apt install gns3-gui gns3-server
